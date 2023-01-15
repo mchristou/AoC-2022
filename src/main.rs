@@ -18,6 +18,7 @@ fn main() {
         "07" => day07::run(),
         "08" => day08::run(),
         "09" => day09::run(),
+        "10" => day10::run(),
         _ => println!("No valid day given"),
     };
 }
