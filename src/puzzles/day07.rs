@@ -30,7 +30,7 @@ fn parse(input: &str) -> HashMap<PathBuf, u32> {
 }
 
 fn part1(input: &str) {
-    let res = parse(&input)
+    let res = parse(input)
         .iter()
         .filter_map(|s| {
             if *s.1 <= 100_000 {
@@ -47,7 +47,7 @@ fn part1(input: &str) {
 fn part2(input: &str) {
     let disk = 70_000_000;
     let needed = 30_000_000;
-    let sizes = parse(&input);
+    let sizes = parse(input);
     let used_space = sizes.get(&PathBuf::from("/")).unwrap();
     let empty_space = disk - used_space;
 

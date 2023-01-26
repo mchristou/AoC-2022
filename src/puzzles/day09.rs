@@ -1,4 +1,7 @@
-use std::hash::{Hash, Hasher};
+use std::{
+    cmp::Ordering,
+    hash::{Hash, Hasher},
+};
 
 use crate::file_reader::read_file;
 
@@ -42,28 +45,32 @@ fn move_tail(head: &Point, tail: &Point) -> Point {
     //
 
     if dx.abs() + dy.abs() > 2 || dx.abs() > 1 || dy.abs() > 1 {
-        if dx.abs() == dy.abs() {
-            return Point {
-                x: head.x - dx.signum(),
-                y: head.y - dy.signum(),
-            };
-        } else if dx.abs() > dy.abs() {
-            return Point {
-                x: head.x - dx.signum(),
-                y: head.y,
-            };
-        } else {
-            return Point {
-                x: head.x,
-                y: head.y - dy.signum(),
-            };
-        }
-    };
+        match dx.abs().cmp(&dy.abs()) {
+            std::cmp::Ordering::Equal => {
+                return Point {
+                    x: head.x - dx.signum(),
+                    y: head.y - dy.signum(),
+                };
+            }
+            Ordering::Greater => {
+                return Point {
+                    x: head.x - dx.signum(),
+                    y: head.y,
+                };
+            }
+            _ => {
+                return Point {
+                    x: head.x,
+                    y: head.y - dy.signum(),
+                };
+            }
+        };
+    }
 
-    return tail.clone();
+    *tail
 }
 
-fn part1(commands: &Vec<(Point, i32)>) {
+fn part1(commands: &[(Point, i32)]) {
     let mut points_visited = std::collections::HashMap::new();
 
     let mut head_point = Point::new(0, 0);

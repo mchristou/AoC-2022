@@ -25,7 +25,7 @@ impl PartialOrd for Packet {
     }
 }
 
-fn part1(pairs: &Vec<(Packet, Packet)>) {
+fn part1(pairs: &[(Packet, Packet)]) {
     let mut res = 0;
     for (idx, pair) in pairs.iter().enumerate() {
         if pair.0 < pair.1 {
@@ -69,7 +69,7 @@ pub fn run() {
     let posible_packets: Vec<_> = input.split("\n\n").collect();
     let mut pairs = vec![];
     for packet in posible_packets {
-        let (left, right) = packet.split_once("\n").unwrap();
+        let (left, right) = packet.split_once('\n').unwrap();
         let mut left = left.chars();
         let _ = left.next().unwrap(); // consuming the first '['
 
@@ -114,5 +114,5 @@ fn parse_packet(packet: &mut std::str::Chars) -> Packet {
             _ => panic!("Invalid data"),
         }
     }
-    return Packet::List(res);
+    Packet::List(res)
 }

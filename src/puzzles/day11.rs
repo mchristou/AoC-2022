@@ -96,7 +96,7 @@ pub fn run() {
             .collect();
 
         let (_, operation) = lines.next().unwrap().split_once("= old").unwrap();
-        let (operator, operand) = operation.trim().split_once(" ").unwrap();
+        let (operator, operand) = operation.trim().split_once(' ').unwrap();
         let value = match operand {
             "old" => Value::Old,
             _ => {
@@ -125,7 +125,7 @@ pub fn run() {
             .next()
             .unwrap()
             .trim()
-            .split(" ")
+            .split(' ')
             .nth(5)
             .unwrap()
             .parse()
@@ -134,7 +134,7 @@ pub fn run() {
             .next()
             .unwrap()
             .trim()
-            .split(" ")
+            .split(' ')
             .nth(5)
             .unwrap()
             .parse()

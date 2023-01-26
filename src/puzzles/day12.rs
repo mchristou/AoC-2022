@@ -108,7 +108,7 @@ fn shortest_path(maze: &Maze) -> Option<u32> {
 }
 
 fn part1(maze: &Maze) {
-    println!("Part 1  Result: {:?}", shortest_path(&maze));
+    println!("Part 1  Result: {:?}", shortest_path(maze));
 }
 
 fn part2(maze: Maze, all_a: Vec<Coord>) {
